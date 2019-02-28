@@ -53,3 +53,30 @@ class Necromancer():
         chain=' '.join(chain)
         chain=re.sub(r'(.*[.]).*',r'\1',chain)
         return chain
+
+    @classmethod
+    def shambler(cls,medium,words):
+        import pickle
+        if medium == 'title':
+            corpus=pickle.load( open("t_corpus.pkl",'rb'))
+            dictionary=pickle.load( open("t_dictionary.pkl",'rb'))
+        else:
+            corpus=pickle.load( open("d_corpus.pkl",'rb'))
+            dictionary=pickle.load( open("d_dictionary.pkl",'rb'))
+        n_words=words
+        beginning = np.random.choice(corpus)
+        
+        while beginning.islower():
+            beginning = np.random.choice(corpus)
+    
+        chain=[beginning]
+        
+        for i in range(n_words):
+            next_word = np.random.choice(dictionary[chain[-1]])
+            if bool(re.search(r'.*[\.?!]$',chain[-1])):
+                while next_word.islower():
+                    next_word = np.random.choice(dictionary[chain[-1]])
+            chain.append(next_word)
+        chain=' '.join(chain)
+        chain=re.sub(r'(.*[.]).*',r'\1',chain)
+        return chain
