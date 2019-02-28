@@ -14,7 +14,7 @@ class Necromancer():
     def raise_corpus(self,medium):
         df1=pd.read_csv(f'./csvs/fantasy-{medium}.csv')
         df2=pd.read_csv(f'./csvs/sci-fi-{medium}.csv')
-        df3=pd.read_csv(f'./csvs/spec-{medium}.csv')
+        df3=pd.read_csv(f'./csvs/speculative-{medium}.csv')
 
         df=df1.append(df2.append(df3))
 
